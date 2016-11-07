@@ -142,6 +142,10 @@
     <value>Value must have a length equal to {0}.</value>
     <comment>{0} - Length</comment>
   </data>
+  <data name="VALUE_MUST_HAVE_LENGTH_GREATER_THAN_OR_EQUAL_TO" xml:space="preserve">
+    <value>Value must have a length greater than or equal to {0}.</value>
+    <comment>{0} - Min Length</comment>
+  </data>
   <data name="VALUE_MUST_HAVE_LENGTH_LESS_THAN_OR_EQUAL_TO" xml:space="preserve">
     <value>Value must have a length less than or equal to {0}.</value>
     <comment>{0} - Max Length</comment>

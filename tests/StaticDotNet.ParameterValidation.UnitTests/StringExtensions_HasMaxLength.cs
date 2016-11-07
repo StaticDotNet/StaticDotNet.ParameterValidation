@@ -44,7 +44,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 			int maxLength = 10;
 
 			string name = "Name";
-			string value = new string( 'A', maxLength );
+			string value = null;
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
 

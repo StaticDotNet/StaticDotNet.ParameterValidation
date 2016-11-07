@@ -164,7 +164,7 @@ namespace StaticDotNet.ParameterValidation
 		/// Validates that the parameter is less than or equal to the <paramref name="maxLength"/>. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
-		/// <param name="maxLength">The expected length.</param>
+		/// <param name="maxLength">The maximum length.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="ArgumentException">Thrown when the parameter length is not less than or equal to the <paramref name="maxLength" />.</exception>
 		public static ParameterValidator<string> HasMaxLength( this ParameterValidator<string> validator, int maxLength )
@@ -183,13 +183,50 @@ namespace StaticDotNet.ParameterValidation
 		/// Validates that the parameter is less than or equal to the <paramref name="maxLength"/>. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
-		/// <param name="maxLength">The expected length.</param>
+		/// <param name="maxLength">The maximum length.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="ArgumentException">Thrown when the parameter length is not less than or equal to the <paramref name="maxLength" />.</exception>
 		public static ParameterValidator<string> HasMaxLength( this ParameterValidator<string> validator, int maxLength, string exceptionMessage )
 		{
 			if( validator.Value != null && validator.Value.Length > maxLength )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is greater than or equal to the <paramref name="minLength"/>. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minLength">The minimum length.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter length is not greater than or equal to the <paramref name="minLength" />.</exception>
+		public static ParameterValidator<string> HasMinLength( this ParameterValidator<string> validator, int minLength )
+		{
+			if( validator.Value == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_HAVE_LENGTH_GREATER_THAN_OR_EQUAL_TO, minLength.ToString() );
+
+			return validator.HasMinLength( minLength, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is greater than or equal to the <paramref name="minLength"/>. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minLength">The minimum length.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter length is not greater than or equal to the <paramref name="minLength" />.</exception>
+		public static ParameterValidator<string> HasMinLength( this ParameterValidator<string> validator, int minLength, string exceptionMessage )
+		{
+			if( validator.Value != null && validator.Value.Length < minLength )
 			{
 				throw new ArgumentException( exceptionMessage, validator.Name );
 			}
