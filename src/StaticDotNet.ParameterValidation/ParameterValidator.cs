@@ -34,22 +34,22 @@ namespace StaticDotNet.ParameterValidation
 		public TParameter Value { get; }
 
 		/// <summary>
-		/// Validates that the <see cref="Value" /> is not null. Otherwise, an <see cref="System.ArgumentNullException" /> is thrown.
+		/// Validates that the parameter is not null. Otherwise, an <see cref="System.ArgumentNullException" /> is thrown.
 		/// </summary>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown when <see cref="Value" /> is null.</exception>
+		/// <exception cref="System.ArgumentNullException">Thrown when parameter is null.</exception>
 		public ParameterValidator<TParameter> IsNotNull()
 		{
 			return this.IsNotNull( ExceptionMessages.VALUE_CANNOT_BE_NULL );
 		}
 
 		/// <summary>
-		/// Validates that the <see cref="Value" /> is not null. Otherwise, an <see cref="System.ArgumentNullException" /> is thrown
+		/// Validates that the parameter is not null. Otherwise, an <see cref="System.ArgumentNullException" /> is thrown
 		/// with the <paramref name="exceptionMessage" /> as the exception message.
 		/// </summary>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown when <see cref="Value" /> is null.</exception>
+		/// <exception cref="System.ArgumentNullException">Thrown when parameter is null.</exception>
 		public ParameterValidator<TParameter> IsNotNull( string exceptionMessage )
 		{
 			if( this.Value == null )
@@ -61,22 +61,22 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates that the <see cref="Value" /> is null. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
+		/// Validates that the parameter is null. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentException">Thrown when <see cref="Value" /> is not null.</exception>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not null.</exception>
 		public ParameterValidator<TParameter> IsNull()
 		{
 			return this.IsNull( ExceptionMessages.VALUE_MUST_BE_NULL );
 		}
 
 		/// <summary>
-		/// Validates that the <see cref="Value" /> is null. Otherwise, an <see cref="System.ArgumentException" /> is thrown
+		/// Validates that the parameter is null. Otherwise, an <see cref="System.ArgumentException" /> is thrown
 		/// with the <paramref name="exceptionMessage" /> as the exception message.
 		/// </summary>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentNullException">Thrown when <see cref="Value" /> is not null.</exception>
+		/// <exception cref="System.ArgumentNullException">Thrown when parameter is not null.</exception>
 		public ParameterValidator<TParameter> IsNull( string exceptionMessage )
 		{
 			if( this.Value != null )

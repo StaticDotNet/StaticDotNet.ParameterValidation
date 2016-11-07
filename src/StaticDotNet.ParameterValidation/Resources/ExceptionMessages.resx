@@ -123,6 +123,9 @@
   <data name="VALUE_CANNOT_BE_NULL" xml:space="preserve">
     <value>Value cannot be null.</value>
   </data>
+  <data name="VALUE_CANNOT_BE_WHITE_SPACE" xml:space="preserve">
+    <value>Value cannot be white space.</value>
+  </data>
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
   </data>

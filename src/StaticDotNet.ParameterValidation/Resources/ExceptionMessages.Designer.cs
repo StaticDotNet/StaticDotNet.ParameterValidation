@@ -78,6 +78,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value cannot be white space..
+        /// </summary>
+        public static string VALUE_CANNOT_BE_WHITE_SPACE {
+            get {
+                return ResourceManager.GetString("VALUE_CANNOT_BE_WHITE_SPACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must be null..
         /// </summary>
         public static string VALUE_MUST_BE_NULL {
