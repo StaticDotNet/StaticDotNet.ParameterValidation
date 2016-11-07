@@ -65,27 +65,57 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
+		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="System.ArgumentNullException" /> or <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentException">Thrown when the parameter is null or empty.</exception>
+		/// <exception cref="System.ArgumentNullException">Thrown when the parameter is null.</exception>
+		/// <exception cref="System.ArgumentException">Thrown when the parameter is empty.</exception>
 		public static ParameterValidator<string> IsNotNullOrEmpty( this ParameterValidator<string> validator )
 		{
 			return validator.IsNotNullOrEmpty( ExceptionMessages.VALUE_CANNOT_BE_NULL_OR_EMPTY );
 		}
 
 		/// <summary>
-		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
+		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="System.ArgumentNullException" /> or <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="System.ArgumentException">Thrown when the parameter is null or empty.</exception>
+		/// <exception cref="System.ArgumentNullException">Thrown when the parameter is null.</exception>
+		/// <exception cref="System.ArgumentException">Thrown when the parameter is empty.</exception>
 		public static ParameterValidator<string> IsNotNullOrEmpty( this ParameterValidator<string> validator, string exceptionMessage )
 		{
 			validator.IsNotNull( exceptionMessage )
 				.IsNotEmpty( exceptionMessage );
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is not null, empty or white space. Otherwise, an <see cref="System.ArgumentNullException" /> or <see cref="System.ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentNullException">Thrown when the parameter is null.</exception>
+		/// <exception cref="System.ArgumentException">Thrown when the parameter is empty or white space.</exception>
+		public static ParameterValidator<string> IsNotNullOrWhiteSpace( this ParameterValidator<string> validator )
+		{
+			return validator.IsNotNullOrWhiteSpace( ExceptionMessages.VALUE_CANNOT_BE_NULL_EMPTY_OR_WHITE_SPACE );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is not null, empty or white space. Otherwise, an <see cref="System.ArgumentNullException" /> or <see cref="System.ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentNullException">Thrown when the parameter is null.</exception>
+		/// <exception cref="System.ArgumentException">Thrown when the parameter is empty or white space.</exception>
+		public static ParameterValidator<string> IsNotNullOrWhiteSpace( this ParameterValidator<string> validator, string exceptionMessage )
+		{
+			validator.IsNotNull( exceptionMessage )
+				.IsNotWhiteSpace( exceptionMessage );
 
 			return validator;
 		}

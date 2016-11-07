@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace StaticDotNet.ParameterValidation.UnitTests
+{
+    public class StringExtensions_IsNotNullOrWhiteSpace
+    {
+		[Fact]
+		public void StringExtensions_IsNotNullOrWhiteSpace_WithValueReturnsCorrectly()
+		{
+			string name = "Name";
+			string value = "Value";
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ParameterValidator<string> result = validator.IsNotNullOrWhiteSpace();
+
+			Assert.Same( validator, result );
+		}
+
+		[Fact]
+		public void StringExtensions_IsNotNullOrWhiteSpace_WithNullValueThrowsArgumentNullException()
+		{
+			string name = "Name";
+			string value = null;
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ArgumentNullException exception = Assert.Throws<ArgumentNullException>( name, () => validator.IsNotNullOrWhiteSpace() );
+
+			Assert.Equal( $"Value cannot be null, empty or white space.\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
+		public void StringExtensions_IsNotNullOrWhiteSpace_WithEmptyValueThrowsArgumentException()
+		{
+			string name = "Name";
+			string value = string.Empty;
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotNullOrWhiteSpace() );
+
+			Assert.Equal( $"Value cannot be null, empty or white space.\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
+		public void StringExtensions_IsNotNullOrWhiteSpace_WithWhiteSpaceValueThrowsArgumentException()
+		{
+			string name = "Name";
+			string value = " ";
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotNullOrWhiteSpace() );
+
+			Assert.Equal( $"Value cannot be null, empty or white space.\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
+		public void StringExtensions_IsNotNullOrWhiteSpace_WithInvalidValueAndExceptionMessageThrowsArgumentException()
+		{
+			string exceptionMessage = "ExceptionMessage";
+
+			string name = "Name";
+			string value = string.Empty;
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotNullOrWhiteSpace( exceptionMessage ) );
+
+			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { name }", exception.Message );
+		}
+	}
+}
