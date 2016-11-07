@@ -130,5 +130,14 @@ namespace StaticDotNet.ParameterValidation.Resources {
                 return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_EQUAL_TO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Value must have a length less than or equal to {0}..
+        /// </summary>
+        public static string VALUE_MUST_HAVE_LENGTH_LESS_THAN_OR_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_LESS_THAN_OR_EQUAL_TO", resourceCulture);
+            }
+        }
     }
 }
