@@ -11,13 +11,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		[Fact]
 		public void ParameterValidator_ctor_InitializesCorrectly()
 		{
-			string parameterName = "ParameterName";
-			object parameterValue = new object();
+			string name = "Name";
+			object value = new object();
 
-			ParameterValidator<object> parameterValidator = new ParameterValidator<object>( parameterName, parameterValue );
+			ParameterValidator<object> parameterValidator = new ParameterValidator<object>( name, value );
 
-			Assert.Equal( parameterName, parameterValidator.ParameterName );
-			Assert.Same( parameterValue, parameterValidator.ParameterValue );
+			Assert.Equal( name, parameterValidator.Name );
+			Assert.Same( value, parameterValidator.Value );
 		}
     }
 }
