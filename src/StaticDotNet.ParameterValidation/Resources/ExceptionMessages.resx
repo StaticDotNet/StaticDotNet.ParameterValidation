@@ -132,7 +132,14 @@
   <data name="VALUE_CANNOT_BE_NULL_OR_EMPTY" xml:space="preserve">
     <value>Value cannot be null or empty.</value>
   </data>
+  <data name="VALUE_MUST_BE_EMPTY" xml:space="preserve">
+    <value>Value must be empty.</value>
+  </data>
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
+  </data>
+  <data name="VALUE_MUST_HAVE_LENGTH_EQUAL_TO" xml:space="preserve">
+    <value>Value must have a length equal to {0}.</value>
+    <comment>{0} - Length</comment>
   </data>
 </root>

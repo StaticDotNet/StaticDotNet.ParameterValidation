@@ -105,11 +105,29 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must be empty..
+        /// </summary>
+        public static string VALUE_MUST_BE_EMPTY {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must be null..
         /// </summary>
         public static string VALUE_MUST_BE_NULL {
             get {
                 return ResourceManager.GetString("VALUE_MUST_BE_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Value must have a length equal to {0}..
+        /// </summary>
+        public static string VALUE_MUST_HAVE_LENGTH_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_EQUAL_TO", resourceCulture);
             }
         }
     }
