@@ -60,6 +60,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value cannot be empty..
+        /// </summary>
+        public static string VALUE_CANNOT_BE_EMPTY {
+            get {
+                return ResourceManager.GetString("VALUE_CANNOT_BE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value cannot be null..
         /// </summary>
         public static string VALUE_CANNOT_BE_NULL {
