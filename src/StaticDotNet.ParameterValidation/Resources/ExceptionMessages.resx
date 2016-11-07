@@ -138,6 +138,11 @@
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
   </data>
+  <data name="VALUE_MUST_HAVE_LENGTH_BETWEEN" xml:space="preserve">
+    <value>Value must have a length between {0} and {1}.</value>
+    <comment>{0} - Min Length
+{1} - Max Length</comment>
+  </data>
   <data name="VALUE_MUST_HAVE_LENGTH_EQUAL_TO" xml:space="preserve">
     <value>Value must have a length equal to {0}.</value>
     <comment>{0} - Length</comment>

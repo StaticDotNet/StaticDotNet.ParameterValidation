@@ -233,5 +233,42 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
+
+		/// <summary>
+		/// Validates that the parameter is greater than or equal to the <paramref name="minLength"/> and less than or equal to <paramref name="maxLength" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minLength">The minimum length.</param>
+		/// <param name="maxLength">The maximum length.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter length is not greater than or equal to the <paramref name="minLength" /> and less than or equal to <paramref name="maxLength"/>.</exception>
+		public static ParameterValidator<string> HasLengthBetween( this ParameterValidator<string> validator, int minLength, int maxLength )
+		{
+			if( validator.Value == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength.ToString(), maxLength.ToString() );
+
+			return validator.HasLengthBetween( minLength, maxLength, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is greater than or equal to the <paramref name="minLength"/> and less than or equal to <paramref name="maxLength" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minLength">The minimum length.</param>
+		/// <param name="maxLength">The maximum length.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter length is not greater than or equal to the <paramref name="minLength" /> and less than or equal to <paramref name="maxLength"/>.</exception>
+		public static ParameterValidator<string> HasLengthBetween( this ParameterValidator<string> validator, int minLength, int maxLength, string exceptionMessage )
+		{
+			validator.HasMinLength( minLength, exceptionMessage )
+				.HasMaxLength( maxLength, exceptionMessage );
+
+			return validator;
+		}
     }
 }
