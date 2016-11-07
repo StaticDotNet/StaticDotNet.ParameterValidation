@@ -9,7 +9,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
     public class StringExtensions_IsNotWhiteSpace
     {
 		[Fact]
-		public void StringExtensions_IsNotWhiteSpace_WithNonWhiteSpaceValueReturnsCorrectly()
+		public void StringExtensions_IsNotWhiteSpace_WithValueReturnsCorrectly()
 		{
 			string name = "Name";
 			string value = "Value";
@@ -35,6 +35,19 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
+		public void StringExtensions_IsNotWhiteSpace_WithEmptyValueThrowsArgumentException()
+		{
+			string name = "Name";
+			string value = " ";
+
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotWhiteSpace() );
+
+			Assert.Equal( $"Value cannot be empty or white space.\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
 		public void StringExtensions_IsNotWhiteSpace_WithWhiteSpaceValueThrowsArgumentException()
 		{
 			string name = "Name";
@@ -44,7 +57,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotWhiteSpace() );
 
-			Assert.Equal( $"Value cannot be white space.\r\nParameter name: { name }", exception.Message );
+			Assert.Equal( $"Value cannot be empty or white space.\r\nParameter name: { name }", exception.Message );
 		}
 
 		[Fact]

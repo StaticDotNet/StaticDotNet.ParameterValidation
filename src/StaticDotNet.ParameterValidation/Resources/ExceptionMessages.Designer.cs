@@ -69,6 +69,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value cannot be empty or white space..
+        /// </summary>
+        public static string VALUE_CANNOT_BE_EMPTY_OR_WHITE_SPACE {
+            get {
+                return ResourceManager.GetString("VALUE_CANNOT_BE_EMPTY_OR_WHITE_SPACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value cannot be null..
         /// </summary>
         public static string VALUE_CANNOT_BE_NULL {
@@ -78,11 +87,11 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
-        ///    Looks up a localized string similar to Value cannot be white space..
+        ///    Looks up a localized string similar to Value cannot be null or empty..
         /// </summary>
-        public static string VALUE_CANNOT_BE_WHITE_SPACE {
+        public static string VALUE_CANNOT_BE_NULL_OR_EMPTY {
             get {
-                return ResourceManager.GetString("VALUE_CANNOT_BE_WHITE_SPACE", resourceCulture);
+                return ResourceManager.GetString("VALUE_CANNOT_BE_NULL_OR_EMPTY", resourceCulture);
             }
         }
         

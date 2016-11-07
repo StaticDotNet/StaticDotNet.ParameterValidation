@@ -9,7 +9,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
     public class StringExtensions_IsNotEmpty
     {
 		[Fact]
-		public void StringExtensions_IsNotEmpty_WithNonEmptyValueReturnsCorrectly()
+		public void StringExtensions_IsNotEmpty_WithValueReturnsCorrectly()
 		{
 			string name = "Name";
 			string value = "Value";
