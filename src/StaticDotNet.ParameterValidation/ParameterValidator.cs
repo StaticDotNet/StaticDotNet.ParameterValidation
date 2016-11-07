@@ -146,5 +146,39 @@ namespace StaticDotNet.ParameterValidation
 
 			return this;
 		}
+
+		/// <summary>
+		/// Throws an <see cref="System.ArgumentException" /> if the <paramref name="conditionExpresion" /> evaluates to true.
+		/// </summary>
+		/// <param name="conditionExpression">The expression to evaluate.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">If the <paramref name="conditionExpression" /> evalutes to true.</exception>
+		public ParameterValidator<TParameter> ThrowIf( Func<TParameter, bool> conditionExpression, string exceptionMessage )
+		{
+			if( conditionExpression != null )
+			{
+				return this.ThrowIf( conditionExpression( this.Value ), exceptionMessage );
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Throws an <see cref="System.ArgumentException" /> if the <paramref name="condition" /> evaluates to true.
+		/// </summary>
+		/// <param name="condition">The condition.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">If the <paramref name="condition" /> evalutes to true.</exception>
+		public ParameterValidator<TParameter> ThrowIf( bool condition, string exceptionMessage )
+		{
+			if( condition )
+			{
+				throw new ArgumentException( exceptionMessage, this.Name );
+			}
+
+			return this;
+		}
 	}
 }
