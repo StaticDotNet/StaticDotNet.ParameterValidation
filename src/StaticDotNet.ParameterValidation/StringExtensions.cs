@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ParameterValidation
 {
+	/// <summary>
+	/// Adds parameter validation for <see cref="string"/>.
+	/// </summary>
     public static class StringExtensions
     {
 		/// <summary>
@@ -125,7 +128,7 @@ namespace StaticDotNet.ParameterValidation
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="expectedLength">The expected length.</param>
-		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.returns>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="ArgumentException">Thrown when the parameter length does not equal to <paramref name="expectedLength" />.</exception>
 		public static ParameterValidator<string> HasLength( this ParameterValidator<string> validator, int expectedLength )
 		{
@@ -145,7 +148,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="expectedLength">The expected length.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
-		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.returns>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="ArgumentException">Thrown when the parameter length does not equal to <paramref name="expectedLength" />.</exception>
 		public static ParameterValidator<string> HasLength( this ParameterValidator<string> validator, int expectedLength, string exceptionMessage )
 		{

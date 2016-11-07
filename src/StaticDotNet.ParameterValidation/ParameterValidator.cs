@@ -119,7 +119,7 @@ namespace StaticDotNet.ParameterValidation
 		/// Adds additional validation based on the <paramref name="condition" /> returning true.
 		/// </summary>
 		/// <param name="condition">The condition.</param>
-		/// <param name="trueExpression">The validation to run if the <paramref name="conditionExpression" /> returns true.</param>
+		/// <param name="trueExpression">The validation to run if the <paramref name="condition" /> returns true.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		public ParameterValidator<TParameter> When( bool condition, Action<ParameterValidator<TParameter>> trueExpression )
 		{
@@ -130,8 +130,8 @@ namespace StaticDotNet.ParameterValidation
 		/// Adds additional validation based on the <paramref name="condition" /> returning true or false.
 		/// </summary>
 		/// <param name="condition">The condition.</param>
-		/// <param name="trueExpression">The validation to run if the <paramref name="conditionExpression" /> returns true.</param>
-		/// <param name="falseExpression">The validation to run if the <paramref name="conditionExpression" /> returns false.</param>
+		/// <param name="trueExpression">The validation to run if the <paramref name="condition" /> returns true.</param>
+		/// <param name="falseExpression">The validation to run if the <paramref name="condition" /> returns false.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		public ParameterValidator<TParameter> When( bool condition, Action<ParameterValidator<TParameter>> trueExpression, Action<ParameterValidator<TParameter>> falseExpression )
 		{
@@ -148,7 +148,7 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Throws an <see cref="System.ArgumentException" /> if the <paramref name="conditionExpresion" /> evaluates to true.
+		/// Throws an <see cref="System.ArgumentException" /> if the <paramref name="conditionExpression" /> evaluates to true.
 		/// </summary>
 		/// <param name="conditionExpression">The expression to evaluate.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
