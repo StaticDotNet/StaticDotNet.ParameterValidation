@@ -159,4 +159,8 @@
     <value>Value must have a length less than or equal to {0}.</value>
     <comment>{0} - Max Length</comment>
   </data>
+  <data name="VALUE_MUST_START_WITH" xml:space="preserve">
+    <value>Value must start with '{0}'.</value>
+    <comment>{0} - Value</comment>
+  </data>
 </root>

@@ -9,8 +9,8 @@ namespace StaticDotNet.ParameterValidation
 	/// <summary>
 	/// Adds parameter validation for <see cref="string"/>.
 	/// </summary>
-    public static class StringExtensions
-    {
+	public static class StringExtensions
+	{
 		/// <summary>
 		/// Validates that the parameter is not empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
@@ -301,6 +301,43 @@ namespace StaticDotNet.ParameterValidation
 		public static ParameterValidator<string> Contains( this ParameterValidator<string> validator, string value, string exceptionMessage )
 		{
 			if( validator.Value != null && value != null && !validator.Value.Contains( value ) )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter must start with the specified <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must start with.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter value does not start with <paramref name="value" />.</exception>
+		public static ParameterValidator<string> StartsWith( this ParameterValidator<string> validator, string value )
+		{
+			if( validator.Value == null || value == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_START_WITH, value );
+
+			return validator.StartsWith( value, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates that the parameter must start with the specified <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must start with.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter value does not start with <paramref name="value" />.</exception>
+		public static ParameterValidator<string> StartsWith( this ParameterValidator<string> validator, string value, string exceptionMessage )
+		{
+			if( validator.Value != null && value != null && !validator.Value.StartsWith( value ) )
 			{
 				throw new ArgumentException( exceptionMessage, validator.Name );
 			}

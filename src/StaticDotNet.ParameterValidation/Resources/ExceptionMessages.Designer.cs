@@ -166,5 +166,14 @@ namespace StaticDotNet.ParameterValidation.Resources {
                 return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_LESS_THAN_OR_EQUAL_TO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Value must start with &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_START_WITH {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_START_WITH", resourceCulture);
+            }
+        }
     }
 }
