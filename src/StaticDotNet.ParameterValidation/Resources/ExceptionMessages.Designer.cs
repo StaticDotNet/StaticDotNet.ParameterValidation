@@ -123,6 +123,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must contain &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_CONTAIN {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_CONTAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must have a length between {0} and {1}..
         /// </summary>
         public static string VALUE_MUST_HAVE_LENGTH_BETWEEN {
