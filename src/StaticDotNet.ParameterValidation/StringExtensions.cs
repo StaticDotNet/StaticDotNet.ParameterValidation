@@ -344,5 +344,42 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
-    }
+
+		/// <summary>
+		/// Validates that the parameter must end with the specified <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must end with.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter value does not end with <paramref name="value" />.</exception>
+		public static ParameterValidator<string> EndsWith( this ParameterValidator<string> validator, string value )
+		{
+			if( validator.Value == null || value == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_END_WITH, value );
+
+			return validator.EndsWith( value, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates that the parameter must end with the specified <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must end with.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter value does not end with <paramref name="value" />.</exception>
+		public static ParameterValidator<string> EndsWith( this ParameterValidator<string> validator, string value, string exceptionMessage )
+		{
+			if( validator.Value != null && value != null && !validator.Value.EndsWith( value ) )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+	}
 }

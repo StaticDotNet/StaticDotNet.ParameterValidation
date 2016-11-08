@@ -142,6 +142,10 @@
     <value>Value must contain '{0}'.</value>
     <comment>{0} - Value</comment>
   </data>
+  <data name="VALUE_MUST_END_WITH" xml:space="preserve">
+    <value>Value must end with '{0}'.</value>
+    <comment>{0} - Value</comment>
+  </data>
   <data name="VALUE_MUST_HAVE_LENGTH_BETWEEN" xml:space="preserve">
     <value>Value must have a length between {0} and {1}.</value>
     <comment>{0} - Min Length

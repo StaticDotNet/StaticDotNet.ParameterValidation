@@ -6,25 +6,25 @@ using Xunit;
 
 namespace StaticDotNet.ParameterValidation.UnitTests
 {
-    public class StringExtensions_StartsWith
+    public class StringExtensions_EndsWith
     {
 		[Fact]
-		public void STringExtensions_StartsWith_WithParameterValueStartsWithValueReturnsCorrectly()
+		public void STringExtensions_EndsWith_WithParameterValueEndsWithValueReturnsCorrectly()
 		{
-			string value = "V";
+			string value = "e";
 
 			string parameterName = "Name";
 			string parameterValue = "Value";
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( parameterName, parameterValue );
 
-			ParameterValidator<string> result = validator.StartsWith( value );
+			ParameterValidator<string> result = validator.EndsWith( value );
 
 			Assert.Same( validator, result );
 		}
 
 		[Fact]
-		public void STringExtensions_StartsWith_WithNullParameterValueReturnsCorrectly()
+		public void STringExtensions_EndsWith_WithNullParameterValueReturnsCorrectly()
 		{
 			string value = "V";
 
@@ -33,13 +33,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( parameterName, parameterValue );
 
-			ParameterValidator<string> result = validator.StartsWith( value );
+			ParameterValidator<string> result = validator.EndsWith( value );
 
 			Assert.Same( validator, result );
 		}
 
 		[Fact]
-		public void STringExtensions_StartsWith_WithNullValueReturnsCorrectly()
+		public void STringExtensions_EndsWith_WithNullValueReturnsCorrectly()
 		{
 			string value = null;
 
@@ -48,30 +48,30 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( parameterName, parameterValue );
 
-			ParameterValidator<string> result = validator.StartsWith( value );
+			ParameterValidator<string> result = validator.EndsWith( value );
 
 			Assert.Same( validator, result );
 		}
 
 		[Fact]
-		public void STringExtensions_StartsWith_WithParameterValueWhichDoesNOtStartWithValueThrowsArguementException()
+		public void STringExtensions_EndsWith_WithParameterValueWhichDoesNOtStartWithValueThrowsArguementException()
 		{
-			string value = "DoesNotStartWith";
+			string value = "DoesNotEndWith";
 
 			string parameterName = "Name";
 			string parameterValue = "Value";
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.StartsWith( value ) );
+			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.EndsWith( value ) );
 
-			Assert.Equal( $"Value must start with '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
+			Assert.Equal( $"Value must end with '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void STringExtensions_StartsWith_WithInvalidParameterValueAndExceptionMessageThrowsArguementException()
+		public void STringExtensions_EndsWith_WithInvalidParameterValueAndExceptionMessageThrowsArguementException()
 		{
-			string value = "DoesNotStartWith";
+			string value = "DoesNotEndWith";
 			string exceptionMessage = "ExceptionMessage";
 
 			string parameterName = "Name";
@@ -79,7 +79,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<string> validator = new ParameterValidator<string>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.StartsWith( value, exceptionMessage ) );
+			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.EndsWith( value, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
