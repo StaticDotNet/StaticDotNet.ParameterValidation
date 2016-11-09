@@ -143,6 +143,10 @@
     <value>Value must be greater than '{0}'.</value>
     <comment>{0} - Value</comment>
   </data>
+  <data name="VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO" xml:space="preserve">
+    <value>Value must be greater than or equal to '{0}'.</value>
+    <comment>{0} - Value</comment>
+  </data>
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
   </data>
