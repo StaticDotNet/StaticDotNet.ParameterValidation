@@ -123,6 +123,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must be greater than &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_BE_GREATER_THAN {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_GREATER_THAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must be null..
         /// </summary>
         public static string VALUE_MUST_BE_NULL {
