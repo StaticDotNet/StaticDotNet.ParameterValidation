@@ -12,6 +12,45 @@ namespace StaticDotNet.ParameterValidation
 	public static class StringExtensions
 	{
 		/// <summary>
+		/// Validates that the parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must be equal to.</param>
+		/// <param name="ignoreCase">Whether or not to ignore case.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not equal to <paramref name="value" />.</exception>
+		public static ParameterValidator<string> IsEqualTo( this ParameterValidator<string> validator, string value, bool ignoreCase )
+		{
+			if( value != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value );
+
+				return validator.IsEqualTo( value, ignoreCase, exceptionMessage );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must be equal to.</param>
+		/// <param name="ignoreCase">Whether or not to ignore case.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not equal to <paramref name="value" />.</exception>
+		public static ParameterValidator<string> IsEqualTo( this ParameterValidator<string> validator, string value, bool ignoreCase, string exceptionMessage )
+		{
+			if( validator.Value != null && value != null && string.Compare( validator.Value, value, ignoreCase ) != 0 )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
 		/// Validates that the parameter is not empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
