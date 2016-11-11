@@ -24,7 +24,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThan_WithParameterValueEqualToValueThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThan_WithParameterValueEqualToValueThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 
@@ -33,13 +33,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value ) );
 
 			Assert.Equal( $"Value must be greater than '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThan_WithParameterValueLessThanValueThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThan_WithParameterValueLessThanValueThrowsArgumentOutOfRangeException()
 		{
 			int value = 1;
 
@@ -48,13 +48,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value ) );
 
 			Assert.Equal( $"Value must be greater than '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThan_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThan_WithInvalidParameterValueAndExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int value = 1;
 			string exceptionMessage = "ExceptionMessage";
@@ -64,7 +64,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
@@ -100,7 +100,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithParameterValueEqualToValueThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithParameterValueEqualToValueThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 
@@ -109,13 +109,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value ) );
 
 			Assert.Equal( $"Value must be greater than '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithParameterValueLessThanValueThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithParameterValueLessThanValueThrowsArgumentOutOfRangeException()
 		{
 			int value = 1;
 
@@ -124,13 +124,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value ) );
 
 			Assert.Equal( $"Value must be greater than '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsGreaterThanWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int value = 1;
 			string exceptionMessage = "ExceptionMessage";
@@ -140,7 +140,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsGreaterThan( value, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsGreaterThan( value, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}

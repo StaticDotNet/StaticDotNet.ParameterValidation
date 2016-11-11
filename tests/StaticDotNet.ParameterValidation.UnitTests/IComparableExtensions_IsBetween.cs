@@ -57,7 +57,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetween_WithParameterValueLessThanMinValueThrowsArgumentException()
+		public void IComparableExtensions_IsBetween_WithParameterValueLessThanMinValueThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -67,13 +67,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
 
 			Assert.Equal( $"Value must be between '{ minValue }' and '{ maxValue }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetween_WithParameterValueGreaterThanMaxValueThrowsArgumentException()
+		public void IComparableExtensions_IsBetween_WithParameterValueGreaterThanMaxValueThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -83,13 +83,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
 
 			Assert.Equal( $"Value must be between '{ minValue }' and '{ maxValue }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetween_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsBetween_WithInvalidParameterValueAndExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -100,7 +100,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
@@ -170,7 +170,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithParameterValueLessThanMinValueThrowsArgumentException()
+		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithParameterValueLessThanMinValueThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -180,13 +180,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
 
 			Assert.Equal( $"Value must be between '{ minValue }' and '{ maxValue }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithParameterValueGreaterThanMaxValueThrowsArgumentException()
+		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithParameterValueGreaterThanMaxValueThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -196,13 +196,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue ) );
 
 			Assert.Equal( $"Value must be between '{ minValue }' and '{ maxValue }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsBetweenWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int minValue = 1;
 			int maxValue = 3;
@@ -213,7 +213,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsBetween( minValue, maxValue, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsBetween( minValue, maxValue, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}

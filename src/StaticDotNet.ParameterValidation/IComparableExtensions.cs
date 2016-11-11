@@ -12,13 +12,13 @@ namespace StaticDotNet.ParameterValidation
 	public static class IComparableExtensions
 	{
 		/// <summary>
-		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must equal.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value )
 			where TParameter : IComparable<TParameter>
 		{
@@ -33,33 +33,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must equal.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
 			if( validator.Value != null && value != null && value.CompareTo( validator.Value ) != 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must equal.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -74,33 +74,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must equal.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter does not equal <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{
 			if( validator.Value != null && value.CompareTo( validator.Value.Value ) != 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsGreaterThan<TParameter>( this ParameterValidator<TParameter> validator, TParameter value )
 			where TParameter : IComparable<TParameter>
 		{
@@ -115,33 +115,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsGreaterThan<TParameter>( this ParameterValidator<TParameter> validator, TParameter value, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
 			if( validator.Value != null && value != null && value.CompareTo( validator.Value ) >= 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsGreaterThan<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -156,33 +156,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsGreaterThan<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{
 			if( validator.Value != null && value.CompareTo( validator.Value.Value ) >= 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsGreaterThanOrEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value )
 			where TParameter : IComparable<TParameter>
 		{
@@ -197,33 +197,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsGreaterThanOrEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
 			if( validator.Value != null && value != null && value.CompareTo( validator.Value ) > 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsGreaterThanOrEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -238,33 +238,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is greater than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be greater than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not greater than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsGreaterThanOrEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{
 			if( validator.Value != null && value.CompareTo( validator.Value.Value ) > 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsLessThan<TParameter>( this ParameterValidator<TParameter> validator, TParameter value )
 			where TParameter : IComparable<TParameter>
 		{
@@ -279,33 +279,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsLessThan<TParameter>( this ParameterValidator<TParameter> validator, TParameter value, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
 			if( validator.Value != null && value != null && value.CompareTo( validator.Value ) <= 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsLessThan<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -320,33 +320,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsLessThan<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{
 			if( validator.Value != null && value.CompareTo( validator.Value.Value ) <= 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsLessThanOrEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value )
 			where TParameter : IComparable<TParameter>
 		{
@@ -361,33 +361,33 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter> IsLessThanOrEqualTo<TParameter>( this ParameterValidator<TParameter> validator, TParameter value, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
 			if( validator.Value != null && value != null && value.CompareTo( validator.Value ) < 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less or equal to than <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less or equal to than <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsLessThanOrEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -402,34 +402,34 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is less than or equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="value">The value the parameter must be less than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not less than or equal to <paramref name="value" />.</exception>
 		public static ParameterValidator<TParameter?> IsLessThanOrEqualTo<TParameter>( this ParameterValidator<TParameter?> validator, TParameter value, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{
 			if( validator.Value != null && value.CompareTo( validator.Value.Value ) < 0 )
 			{
-				throw new ArgumentException( exceptionMessage, validator.Name );
+				throw new ArgumentOutOfRangeException( validator.Name, exceptionMessage );
 			}
 
 			return validator;
 		}
 
 		/// <summary>
-		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
 		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
 		public static ParameterValidator<TParameter> IsBetween<TParameter>( this ParameterValidator<TParameter> validator, TParameter minValue, TParameter maxValue )
 			where TParameter : IComparable<TParameter>
 		{
@@ -444,7 +444,7 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
@@ -452,7 +452,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
 		public static ParameterValidator<TParameter> IsBetween<TParameter>( this ParameterValidator<TParameter> validator, TParameter minValue, TParameter maxValue, string exceptionMessage )
 			where TParameter : IComparable<TParameter>
 		{
@@ -461,14 +461,14 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
 		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
 		public static ParameterValidator<TParameter?> IsBetween<TParameter>( this ParameterValidator<TParameter?> validator, TParameter minValue, TParameter maxValue )
 			where TParameter : struct, IComparable<TParameter>
 		{
@@ -483,7 +483,7 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
-		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentOutOfRangeException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
@@ -491,7 +491,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
-		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
 		public static ParameterValidator<TParameter?> IsBetween<TParameter>( this ParameterValidator<TParameter?> validator, TParameter minValue, TParameter maxValue, string exceptionMessage )
 			where TParameter : struct, IComparable<TParameter>
 		{

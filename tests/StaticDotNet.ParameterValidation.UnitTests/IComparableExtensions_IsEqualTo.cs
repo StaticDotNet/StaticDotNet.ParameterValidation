@@ -24,7 +24,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsEqualTo_WithParameterValueNotEqualToThrowsArgumentException()
+		public void IComparableExtensions_IsEqualTo_WithParameterValueNotEqualToThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 
@@ -33,13 +33,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsEqualTo( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsEqualTo( value ) );
 
 			Assert.Equal( $"Value must be equal to '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsEqualTo_WithInvalidParameterValueWithExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsEqualTo_WithInvalidParameterValueWithExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 			string exceptionMessage = "ExceptionMessage";
@@ -49,7 +49,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int> validator = new ParameterValidator<int>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsEqualTo( value, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsEqualTo( value, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
@@ -85,7 +85,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsEqualToWithNullableTParameter_WithParameterValueNotEqualToValueThrowsArgumentException()
+		public void IComparableExtensions_IsEqualToWithNullableTParameter_WithParameterValueNotEqualToValueThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 
@@ -94,13 +94,13 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsEqualTo( value ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsEqualTo( value ) );
 
 			Assert.Equal( $"Value must be equal to '{ value }'.\r\nParameter name: { parameterName }", exception.Message );
 		}
 
 		[Fact]
-		public void IComparableExtensions_IsEqualToWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void IComparableExtensions_IsEqualToWithNullableTParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentOutOfRangeException()
 		{
 			int value = 0;
 			string exceptionMessage = "ExceptionMessage";
@@ -110,7 +110,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 
 			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
 
-			ArgumentException exception = Assert.Throws<ArgumentException>( parameterName, () => validator.IsEqualTo( value, exceptionMessage ) );
+			ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( parameterName, () => validator.IsEqualTo( value, exceptionMessage ) );
 
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
