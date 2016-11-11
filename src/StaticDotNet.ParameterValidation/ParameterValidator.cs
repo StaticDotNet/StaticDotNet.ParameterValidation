@@ -88,6 +88,41 @@ namespace StaticDotNet.ParameterValidation
 		}
 
 		/// <summary>
+		/// Validates that the parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="value">The expected value.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not equal to <paramref name="value" />.</exception>
+		public ParameterValidator<TParameter> IsEqualTo( TParameter value )
+		{
+			if( value != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value.ToString() );
+
+				return this.IsEqualTo( value, exceptionMessage );
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="value">The expected value.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not equal to <paramref name="value" />.</exception>
+		public ParameterValidator<TParameter> IsEqualTo( TParameter value, string exceptionMessage )
+		{
+			if( this.Value != null && value != null && !this.Value.Equals( value ) )
+			{
+				throw new ArgumentException( exceptionMessage, this.Name );
+			}
+
+			return this;
+		}
+
+		/// <summary>
 		/// Adds additional validation based on the <paramref name="conditionExpression" /> returning true.
 		/// </summary>
 		/// <param name="conditionExpression">The expression to evaluate.</param>

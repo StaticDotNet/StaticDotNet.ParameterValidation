@@ -105,6 +105,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must be assignable to &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_BE_ASSIGNABLE_TO {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_ASSIGNABLE_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must be between &apos;{0}&apos; and &apos;{1}&apos;..
         /// </summary>
         public static string VALUE_MUST_BE_BETWEEN {
