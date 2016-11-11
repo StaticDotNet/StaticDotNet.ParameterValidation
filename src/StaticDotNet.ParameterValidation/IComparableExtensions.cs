@@ -420,5 +420,83 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
+
+		/// <summary>
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
+		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		public static ParameterValidator<TParameter> IsBetween<TParameter>( this ParameterValidator<TParameter> validator, TParameter minValue, TParameter maxValue )
+			where TParameter : IComparable<TParameter>
+		{
+			if( validator.Value == null || minValue == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_BETWEEN, minValue.ToString(), maxValue.ToString() );
+
+			return validator.IsBetween( minValue, maxValue, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
+		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		public static ParameterValidator<TParameter> IsBetween<TParameter>( this ParameterValidator<TParameter> validator, TParameter minValue, TParameter maxValue, string exceptionMessage )
+			where TParameter : IComparable<TParameter>
+		{
+			return validator.IsGreaterThanOrEqualTo( minValue, exceptionMessage )
+				.IsLessThanOrEqualTo( maxValue, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
+		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		public static ParameterValidator<TParameter?> IsBetween<TParameter>( this ParameterValidator<TParameter?> validator, TParameter minValue, TParameter maxValue )
+			where TParameter : struct, IComparable<TParameter>
+		{
+			if( validator.Value == null )
+			{
+				return validator;
+			}
+
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_BETWEEN, minValue.ToString(), maxValue.ToString() );
+
+			return validator.IsBetween( minValue, maxValue, exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates a parameter is between <paramref name="minValue" /> and <paramref name="maxValue" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="minValue">The value the parameter must be greater than or equal to.</param>
+		/// <param name="maxValue">The value the parameter must be less than or equal to.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not between <paramref name="minValue" /> and <paramref name="maxValue" />.</exception>
+		public static ParameterValidator<TParameter?> IsBetween<TParameter>( this ParameterValidator<TParameter?> validator, TParameter minValue, TParameter maxValue, string exceptionMessage )
+			where TParameter : struct, IComparable<TParameter>
+		{
+			return validator.IsGreaterThanOrEqualTo( minValue, exceptionMessage )
+				.IsLessThanOrEqualTo( maxValue, exceptionMessage );
+		}
 	}
 }
