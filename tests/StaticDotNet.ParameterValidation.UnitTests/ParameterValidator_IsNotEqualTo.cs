@@ -24,6 +24,36 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
+		public void ParameterValidator_IsNotEqualTo_WithNullParameterValueReturnsCorrectly()
+		{
+			int? value = 0;
+
+			string parameterName = "ParameterName";
+			int? parameterValue = null;
+
+			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
+
+			ParameterValidator<int?> result = validator.IsNotEqualTo( value );
+
+			Assert.Same( validator, result );
+		}
+
+		[Fact]
+		public void ParameterValidator_IsNotEqualTo_WithNullValueReturnsCorrectly()
+		{
+			int? value = null;
+
+			string parameterName = "ParameterName";
+			int? parameterValue = -1;
+
+			ParameterValidator<int?> validator = new ParameterValidator<int?>( parameterName, parameterValue );
+
+			ParameterValidator<int?> result = validator.IsNotEqualTo( value );
+
+			Assert.Same( validator, result );
+		}
+
+		[Fact]
 		public void ParameterValidator_IsNotEqualTo_WithParameterValueEqualToThrowsArgumentException()
 		{
 			int value = 0;
