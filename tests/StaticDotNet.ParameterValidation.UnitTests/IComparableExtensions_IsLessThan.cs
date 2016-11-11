@@ -69,10 +69,6 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { parameterName }", exception.Message );
 		}
 
-
-
-
-
 		[Fact]
 		public void IComparableExtensions_IsLessThanWithNullableTParameter_WithParameterValueLessThanValueReturnsCorrectly()
 		{
