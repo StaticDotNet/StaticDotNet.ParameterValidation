@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		[Fact]
 		public void TypeExtensions_IsAssignableTo_WithParameterValueAssignableToTypeReturnsCorrectly()
 		{
-			Type type = typeof( object );
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			string value = "Value";
@@ -26,7 +27,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		[Fact]
 		public void TypeExtensions_IsAssignableTo_WithNullParameterValueReturnsCorrectly()
 		{
-			Type type = typeof( object );
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			string value = null;
@@ -56,7 +57,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		[Fact]
 		public void TypeExtensions_IsAssignableTo_WithParameterValueNotAssignableToTypeThrowsArgumentException()
 		{
-			Type type = typeof( string );
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			object value = new object();
@@ -71,7 +72,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		[Fact]
 		public void TypeExtensions_IsAssignableTo_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
 		{
-			Type type = typeof( string );
+			Type type = typeof( IEnumerable );
 			string exceptionMessage = "ExceptionMessage";
 
 			string name = "Name";
@@ -85,9 +86,63 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void TypeExtensions_IsAssignableToWithTypeParameter_WithParameterValueAssignableToTypeReturnsCorrectly()
+		public void TypeExtensions_IsAssignableToWithTType_WithTypeParameterValueAssignableToTTypeReturnsCorrectly()
 		{
-			Type type = typeof( object );
+			string name = "Name";
+			Type value = typeof( string );
+
+			ParameterValidator<Type> validator = new ParameterValidator<Type>( name, value );
+
+			ParameterValidator<Type> result = validator.IsAssignableTo<IEnumerable>();
+
+			Assert.Same( validator, result );
+		}
+
+		[Fact]
+		public void TypeExtensions_IsAssignableToWithTType_WithNullTypeParameterValueReturnsCorrectly()
+		{
+			string name = "Name";
+			Type value = null;
+
+			ParameterValidator<Type> validator = new ParameterValidator<Type>( name, value );
+
+			ParameterValidator<Type> result = validator.IsAssignableTo<IEnumerable>();
+
+			Assert.Same( validator, result );
+		}
+
+		[Fact]
+		public void TypeExtensions_IsAssignableToWithTType_WithTypeParameterValueNotAssignableToTTypeThrowsArgumentException()
+		{
+			string name = "Name";
+			Type value = typeof( object );
+
+			ParameterValidator<Type> validator = new ParameterValidator<Type>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsAssignableTo<IEnumerable>() );
+
+			Assert.Equal( $"Value must be assignable to '{ typeof( IEnumerable ).FullName }'.\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
+		public void TypeExtensions_IsAssignableToWithTType_WithInvalidTypeParameterValueAndExceptionMessageThrowsArgumentException()
+		{
+			string exceptionMessage = "ExceptionMessage";
+
+			string name = "Name";
+			Type value = typeof( object );
+
+			ParameterValidator<Type> validator = new ParameterValidator<Type>( name, value );
+
+			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsAssignableTo<IEnumerable>( exceptionMessage ) );
+
+			Assert.Equal( $"{ exceptionMessage }\r\nParameter name: { name }", exception.Message );
+		}
+
+		[Fact]
+		public void TypeExtensions_IsAssignableTo_WithTypeParameterValueAssignableToTypeReturnsCorrectly()
+		{
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			Type value = typeof( string );
@@ -100,9 +155,9 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void TypeExtensions_IsAssignableToWithTypeParameter_WithNullParameterValueReturnsCorrectly()
+		public void TypeExtensions_IsAssignableTo_WithNullTypeParameterValueReturnsCorrectly()
 		{
-			Type type = typeof( object );
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			Type value = null;
@@ -115,7 +170,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void TypeExtensions_IsAssignableToWithTypeParameter_WithNullTypeReturnsCorrectly()
+		public void TypeExtensions_IsAssignableTo_WithTypeParameterAndNullTypeReturnsCorrectly()
 		{
 			Type type = null;
 
@@ -130,9 +185,9 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void TypeExtensions_IsAssignableToWithTypeParameter_WithParameterValueNotAssignableToTypeThrowsArgumentException()
+		public void TypeExtensions_IsAssignableTo_WithTypeParameterValueNotAssignableToTypeThrowsArgumentException()
 		{
-			Type type = typeof( string );
+			Type type = typeof( IEnumerable );
 
 			string name = "Name";
 			Type value = typeof( object );
@@ -145,9 +200,9 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void TypeExtensions_IsAssignableToWithTypeParameter_WithInvalidParameterValueAndExceptionMessageThrowsArgumentException()
+		public void TypeExtensions_IsAssignableTo_WithInvalidTypeParameterValueAndExceptionMessageThrowsArgumentException()
 		{
-			Type type = typeof( string );
+			Type type = typeof( IEnumerable );
 			string exceptionMessage = "ExceptionMessage";
 
 			string name = "Name";

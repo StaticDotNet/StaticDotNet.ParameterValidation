@@ -11,7 +11,7 @@ namespace StaticDotNet.ParameterValidation
 	/// Adds parameter validation for <see cref="Type"/>.
 	/// </summary>
 	public static class TypeExtensions
-    {
+	{
 		/// <summary>
 		///  Validates that the parameter is equal to <typeparamref name="TType" />. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
@@ -74,6 +74,31 @@ namespace StaticDotNet.ParameterValidation
 			}
 
 			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be assignable to.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <typeparamref name="TType" />.</exception>
+		public static ParameterValidator<Type> IsAssignableTo<TType>( this ParameterValidator<Type> validator )
+		{
+			return validator.IsAssignableTo( typeof( TType ) );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be assignable to.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <typeparamref name="TType" />.</exception>
+		public static ParameterValidator<Type> IsAssignableTo<TType>( this ParameterValidator<Type> validator, string exceptionMessage )
+		{
+			return validator.IsAssignableTo( typeof( TType ), exceptionMessage );
 		}
 
 		/// <summary>
