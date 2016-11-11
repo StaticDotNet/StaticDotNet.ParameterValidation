@@ -36,5 +36,81 @@ namespace StaticDotNet.ParameterValidation
 		{
 			return validator.IsEqualTo( typeof( TType ), exceptionMessage );
 		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The type of parameter.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="type">The type the parameter should be assignable to.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <paramref name="type" />.</exception>
+		public static ParameterValidator<TParameter> IsAssignableTo<TParameter>( this ParameterValidator<TParameter> validator, Type type )
+		{
+			if( type != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, type.FullName );
+
+				return validator.IsAssignableTo( type, exceptionMessage );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The type of parameter.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="type">The type the parameter should be assignable to.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <paramref name="type" />.</exception>
+		public static ParameterValidator<TParameter> IsAssignableTo<TParameter>( this ParameterValidator<TParameter> validator, Type type, string exceptionMessage )
+		{
+			if( validator.Value != null && type != null && !type.IsAssignableFrom( validator.Value.GetType() ) )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="type">The type the parameter should be assignable to.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <paramref name="type" />.</exception>
+		public static ParameterValidator<Type> IsAssignableTo( this ParameterValidator<Type> validator, Type type )
+		{
+			if( type != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, type.FullName );
+
+				return validator.IsAssignableTo( type, exceptionMessage );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is assignable to <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="type">The type the parameter should be assignable to.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not assignable to <paramref name="type" />.</exception>
+		public static ParameterValidator<Type> IsAssignableTo( this ParameterValidator<Type> validator, Type type, string exceptionMessage )
+		{
+			if( validator.Value != null && type != null && !type.IsAssignableFrom( validator.Value ) )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
     }
 }
