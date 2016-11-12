@@ -186,6 +186,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must be type &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_BE_TYPE {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must contain &apos;{0}&apos;..
         /// </summary>
         public static string VALUE_MUST_CONTAIN {

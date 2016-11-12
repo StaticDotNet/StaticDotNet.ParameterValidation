@@ -165,6 +165,10 @@
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
   </data>
+  <data name="VALUE_MUST_BE_TYPE" xml:space="preserve">
+    <value>Value must be type '{0}'.</value>
+    <comment>{0} - Type Full Name</comment>
+  </data>
   <data name="VALUE_MUST_CONTAIN" xml:space="preserve">
     <value>Value must contain '{0}'.</value>
     <comment>{0} - Value</comment>

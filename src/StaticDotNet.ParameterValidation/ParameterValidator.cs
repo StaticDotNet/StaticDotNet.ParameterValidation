@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace StaticDotNet.ParameterValidation
@@ -150,6 +151,110 @@ namespace StaticDotNet.ParameterValidation
 		public ParameterValidator<TParameter> IsNotEqualTo( TParameter value, string exceptionMessage )
 		{
 			if( this.Value != null && value != null && this.Value.Equals( value ) )
+			{
+				throw new ArgumentException( exceptionMessage, this.Name );
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be.</typeparam>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
+		public ParameterValidator<TParameter> IsType<TType>()
+			where TType : class
+		{
+			TType instance;
+
+			return this.IsType( out instance );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be.</typeparam>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
+		public ParameterValidator<TParameter> IsType<TType>( string exceptionMessage )
+			where TType : class
+		{
+			TType instance;
+
+			return this.IsType( exceptionMessage, out instance );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be.</typeparam>
+		/// <param name="instance">The instance cast as <typeparamref name="TType" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
+		public ParameterValidator<TParameter> IsType<TType>( out TType instance )
+			where TType : class
+		{
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_TYPE, typeof( TType ).FullName );
+
+			return this.IsType( exceptionMessage, out instance );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TType">The type the parameter should be.</typeparam>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <param name="instance">The instance cast as <typeparamref name="TType" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
+		public ParameterValidator<TParameter> IsType<TType>( string exceptionMessage, out TType instance )
+			where TType : class
+		{
+			instance = null;
+
+			if( this.Value != null )
+			{
+				instance = this.Value as TType;
+				if( instance == null )
+				{
+					throw new ArgumentException( exceptionMessage, this.Name );
+				}
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="type">The type the parameter should be.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <paramref name="type" />.</exception>
+		public ParameterValidator<TParameter> IsType( Type type )
+		{
+			if( type != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_TYPE, type.FullName );
+
+				return this.IsType( type, exceptionMessage );
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Validates that the parameter is type <paramref name="type" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="type">The type the parameter should be.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <paramref name="type" />.</exception>
+		public ParameterValidator<TParameter> IsType( Type type, string exceptionMessage )
+		{
+			if( this.Value != null && type != null && !type.IsAssignableFrom( this.Value.GetType() ) )
 			{
 				throw new ArgumentException( exceptionMessage, this.Name );
 			}
