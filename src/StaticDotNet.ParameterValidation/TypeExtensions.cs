@@ -126,5 +126,33 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
-    }
+
+		/// <summary>
+		/// Validates that the parameter is an interface. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not an interface.</exception>
+		public static ParameterValidator<Type> IsInterface( this ParameterValidator<Type> validator )
+		{
+			return validator.IsInterface( ExceptionMessages.VALUE_MUST_BE_AN_INTERFACE );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is an interface. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not an interface.</exception>
+		public static ParameterValidator<Type> IsInterface( this ParameterValidator<Type> validator, string exceptionMessage )
+		{
+			if( validator.Value != null && !validator.Value.GetTypeInfo().IsInterface )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+	}
 }

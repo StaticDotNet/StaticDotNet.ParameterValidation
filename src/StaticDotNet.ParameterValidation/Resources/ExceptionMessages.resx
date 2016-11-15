@@ -132,6 +132,9 @@
   <data name="VALUE_CANNOT_BE_NULL_OR_EMPTY" xml:space="preserve">
     <value>Value cannot be null or empty.</value>
   </data>
+  <data name="VALUE_MUST_BE_AN_INTERFACE" xml:space="preserve">
+    <value>Value must be an interface.</value>
+  </data>
   <data name="VALUE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
     <value>Value must be assignable to '{0}'.</value>
     <comment>{0} - Type Full Name</comment>
