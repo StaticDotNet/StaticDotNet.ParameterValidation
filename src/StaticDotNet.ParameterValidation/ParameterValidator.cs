@@ -165,11 +165,10 @@ namespace StaticDotNet.ParameterValidation
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
 		public ParameterValidator<TParameter> IsType<TType>()
-			where TType : class
 		{
-			TType instance;
+			string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_BE_TYPE, typeof( TType ).FullName );
 
-			return this.IsType( out instance );
+			return this.IsType<TType>( exceptionMessage );
 		}
 
 		/// <summary>
@@ -180,18 +179,20 @@ namespace StaticDotNet.ParameterValidation
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
 		public ParameterValidator<TParameter> IsType<TType>( string exceptionMessage )
-			where TType : class
 		{
-			TType instance;
+			if( this.Value != null && !( this.Value is TType ) )
+			{
+				throw new ArgumentException( exceptionMessage, this.Name );
+			}
 
-			return this.IsType( exceptionMessage, out instance );
+			return this;
 		}
 
 		/// <summary>
 		/// Validates that the parameter is type <typeparamref name="TType" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
 		/// <typeparam name="TType">The type the parameter should be.</typeparam>
-		/// <param name="instance">The instance cast as <typeparamref name="TType" />.</param>
+		/// <param name="instance">The instance cast as <typeparamref name="TType" />. If the parameter value is null, the instance is null.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
 		public ParameterValidator<TParameter> IsType<TType>( out TType instance )
@@ -207,7 +208,7 @@ namespace StaticDotNet.ParameterValidation
 		/// </summary>
 		/// <typeparam name="TType">The type the parameter should be.</typeparam>
 		/// <param name="exceptionMessage">The exception message.</param>
-		/// <param name="instance">The instance cast as <typeparamref name="TType" />.</param>
+		/// <param name="instance">The instance cast as <typeparamref name="TType" />. If the parameter value is null, the instance is null.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when parameter is not type <typeparamref name="TType" />.</exception>
 		public ParameterValidator<TParameter> IsType<TType>( string exceptionMessage, out TType instance )
