@@ -136,6 +136,9 @@
     <value>Value must be assignable to '{0}'.</value>
     <comment>{0} - Type Full Name</comment>
   </data>
+  <data name="VALUE_MUST_BE_A_CLASS" xml:space="preserve">
+    <value>Value must be a class.</value>
+  </data>
   <data name="VALUE_MUST_BE_BETWEEN" xml:space="preserve">
     <value>Value must be between '{0}' and '{1}'.</value>
     <comment>{0} - MinValue, {0} - MaxValue</comment>

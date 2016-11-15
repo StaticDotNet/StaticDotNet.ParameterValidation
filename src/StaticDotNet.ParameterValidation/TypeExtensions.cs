@@ -98,5 +98,33 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
+
+		/// <summary>
+		/// Validates that the parameter is a class. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not a class.</exception>
+		public static ParameterValidator<Type> IsClass( this ParameterValidator<Type> validator )
+		{
+			return validator.IsClass( ExceptionMessages.VALUE_MUST_BE_A_CLASS );
+		}
+
+		/// <summary>
+		/// Validates that the parameter is a class. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter is not a class.</exception>
+		public static ParameterValidator<Type> IsClass( this ParameterValidator<Type> validator, string exceptionMessage )
+		{
+			if( validator.Value != null && !validator.Value.GetTypeInfo().IsClass )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
     }
 }
