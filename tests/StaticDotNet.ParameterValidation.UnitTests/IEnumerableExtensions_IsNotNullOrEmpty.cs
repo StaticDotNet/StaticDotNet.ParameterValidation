@@ -6,10 +6,10 @@ using Xunit;
 
 namespace StaticDotNet.ParameterValidation.UnitTests
 {
-    public class StringExtensions_IsNotNullOrEmpty
+    public class IEnumerableExtensions_IsNotNullOrEmpty
     {
 		[Fact]
-		public void StringExtensions_IsNotNullOrEmpty_WithValueReturnsCorrectly()
+		public void IEnumerableExtensions_IsNotNullOrEmpty_WithValueReturnsCorrectly()
 		{
 			string name = "Name";
 			string value = "Value";
@@ -22,7 +22,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void StringExtensions_IsNotNullOrEmpty_WithNullValueThrowsArgumentNullException()
+		public void IEnumerableExtensions_IsNotNullOrEmpty_WithNullValueThrowsArgumentNullException()
 		{
 			string name = "Name";
 			string value = null;
@@ -35,7 +35,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void StringExtensions_IsNotNullOrEmpty_WithEmptyValueThrowsArgumentException()
+		public void IEnumerableExtensions_IsNotNullOrEmpty_WithEmptyValueThrowsArgumentException()
 		{
 			string name = "Name";
 			string value = string.Empty;
@@ -48,7 +48,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void StringExtensions_IsNotNullOrEmpty_WithInvalidValueAndExceptionMessageThrowsArgumentException()
+		public void IEnumerableExtensions_IsNotNullOrEmpty_WithInvalidValueAndExceptionMessageThrowsArgumentException()
 		{
 			string exceptionMessage = "ExceptionMessage";
 
