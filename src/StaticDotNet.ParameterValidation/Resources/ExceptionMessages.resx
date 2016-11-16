@@ -199,6 +199,10 @@
     <value>Value must have a length less than or equal to {0}.</value>
     <comment>{0} - Max Length</comment>
   </data>
+  <data name="VALUE_MUST_MATCH_REGULAR_EXPRESSION" xml:space="preserve">
+    <value>Value must match the regular expression '{0}'.</value>
+    <comment>{0} - Regular Expression</comment>
+  </data>
   <data name="VALUE_MUST_NOT_BE_EQUAL_TO" xml:space="preserve">
     <value>Value must not be equal to '{0}'.</value>
     <comment>{0} - Value</comment>

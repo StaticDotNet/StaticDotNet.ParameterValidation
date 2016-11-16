@@ -267,6 +267,15 @@ namespace StaticDotNet.ParameterValidation.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Value must match the regular expression &apos;{0}&apos;..
+        /// </summary>
+        public static string VALUE_MUST_MATCH_REGULAR_EXPRESSION {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_MATCH_REGULAR_EXPRESSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Value must not be equal to &apos;{0}&apos;..
         /// </summary>
         public static string VALUE_MUST_NOT_BE_EQUAL_TO {

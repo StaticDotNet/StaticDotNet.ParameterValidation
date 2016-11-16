@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StaticDotNet.ParameterValidation
@@ -455,6 +456,157 @@ namespace StaticDotNet.ParameterValidation
 			if( validator.Value != null && value != null && !validator.Value.EndsWith( value ) )
 			{
 				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="pattern" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="pattern">The regular expression pattern.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="pattern" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, string pattern )
+		{
+			Match match;
+
+			return validator.Match( pattern, out match );
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="pattern" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="pattern">The regular expression pattern.</param>
+		/// <param name="match">The <see cref="System.Text.RegularExpressions.Match"/>.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="pattern" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, string pattern, out Match match )
+		{
+			if( pattern != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_MATCH_REGULAR_EXPRESSION, pattern );
+
+				return validator.Match( pattern, exceptionMessage, out match );
+			}
+
+			match = null;
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="pattern" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="pattern">The regular expression pattern.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="pattern" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, string pattern, string exceptionMessage )
+		{
+			Match match;
+
+			return validator.Match( pattern, exceptionMessage, out match );
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="pattern" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="pattern">The regular expression pattern.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <param name="match">The <see cref="System.Text.RegularExpressions.Match"/>.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="pattern" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, string pattern, string exceptionMessage, out Match match )
+		{
+			if( pattern != null )
+			{
+				Regex regex = new Regex( pattern );
+
+				return validator.Match( regex, exceptionMessage, out match );
+			}
+
+			match = null;
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="regex" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="regex">The regular expression.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="regex" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, Regex regex )
+		{
+			if( regex != null )
+			{
+				Match match;
+				return validator.Match( regex, out match );
+			}
+
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="regex" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="regex">The regular expression.</param>
+		/// <param name="match">The <see cref="System.Text.RegularExpressions.Match"/>.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="regex" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, Regex regex, out Match match )
+		{
+			if( regex != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_MATCH_REGULAR_EXPRESSION, regex.ToString() );
+
+				return validator.Match( regex, exceptionMessage, out match );
+			}
+
+			match = null;
+			return validator;
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="regex" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="regex">The regular expression.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="regex" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, Regex regex, string exceptionMessage )
+		{
+			Match match;
+
+			return validator.Match( regex, exceptionMessage, out match );
+		}
+
+		/// <summary>
+		/// Validates that the parameter matches the specified regular expression <paramref name="regex" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="regex">The regular expression.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <param name="match">The <see cref="System.Text.RegularExpressions.Match"/>.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Thrown when the parameter does not match <paramref name="regex" />.</exception>
+		public static ParameterValidator<string> Match( this ParameterValidator<string> validator, Regex regex, string exceptionMessage, out Match match )
+		{
+			match = null;
+
+			if( validator.Value != null && regex != null )
+			{
+				match = regex.Match( validator.Value );
+				if( !match.Success )
+				{
+					throw new ArgumentException( exceptionMessage, validator.Name );
+				}
 			}
 
 			return validator;
