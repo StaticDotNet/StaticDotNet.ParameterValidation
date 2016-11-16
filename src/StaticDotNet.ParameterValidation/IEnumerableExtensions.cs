@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ParameterValidation
 {
-    public static class IEnumerableExtensions
+	/// <summary>
+	/// Adds parameter validation for <see cref="IEnumerable" /> and <see cref="IEnumerable{T}" />.
+	/// </summary>
+	public static class IEnumerableExtensions
     {
 		/// <summary>
 		/// Validates that the parameter is not empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when the parameter is empty.</exception>
@@ -25,6 +29,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <summary>
 		/// Validates that the parameter is not empty. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
@@ -43,6 +48,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <summary>
 		/// Validates that the parameter is empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="System.ArgumentException">Thrown when the parameter is not empty.</exception>
@@ -55,6 +61,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <summary>
 		/// Validates that the parameter is empty. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
@@ -73,6 +80,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <summary>
 		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="ArgumentNullException" /> or <see cref="ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
 		/// <exception cref="ArgumentNullException">Thrown when the parameter is null.</exception>
@@ -86,6 +94,7 @@ namespace StaticDotNet.ParameterValidation
 		/// <summary>
 		/// Validates that the parameter is not null or empty. Otherwise, an <see cref="ArgumentNullException" /> or <see cref="ArgumentException" /> is thrown.
 		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
 		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
 		/// <param name="exceptionMessage">The exception message.</param>
 		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
@@ -96,6 +105,49 @@ namespace StaticDotNet.ParameterValidation
 		{
 			return validator.IsNotNull( exceptionMessage )
 				.IsNotEmpty( exceptionMessage );
+		}
+
+		/// <summary>
+		/// Validates that the parameter contains <paramref name="value" />. Otherwise an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <typeparam name="TValue">The type the parameter value contains.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must contain.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Occurs when the parameter does not contain <paramref name="value" />.</exception>
+		public static ParameterValidator<TParameter> Contains<TParameter, TValue>( this ParameterValidator<TParameter> validator, TValue value )
+			where TParameter : IEnumerable<TValue>
+		{
+			if( value != null )
+			{
+				string exceptionMessage = string.Format( ExceptionMessages.VALUE_MUST_CONTAIN, value.ToString() );
+
+				return validator.Contains( value, exceptionMessage );
+			}
+
+			return validator;	
+		}
+
+		/// <summary>
+		/// Validates that the parameter contains <paramref name="value" />. Otherwise an <see cref="ArgumentException" /> is thrown.
+		/// </summary>
+		/// <typeparam name="TParameter">The parameter type.</typeparam>
+		/// <typeparam name="TValue">The type the parameter value contains.</typeparam>
+		/// <param name="validator">The <see cref="ParameterValidator{TParameter}" />.</param>
+		/// <param name="value">The value the parameter must contain.</param>
+		/// <param name="exceptionMessage">The exception message.</param>
+		/// <returns>The same instance of <see cref="ParameterValidator{TParameter}" />.</returns>
+		/// <exception cref="ArgumentException">Occurs when the parameter does not contain <paramref name="value" />.</exception>
+		public static ParameterValidator<TParameter> Contains<TParameter, TValue>( this ParameterValidator<TParameter> validator, TValue value, string exceptionMessage )
+			where TParameter : IEnumerable<TValue>
+		{
+			if( validator.Value != null & value != null && !validator.Value.Contains( value ) )
+			{
+				throw new ArgumentException( exceptionMessage, validator.Name );
+			}
+
+			return validator;
 		}
     }
 }
