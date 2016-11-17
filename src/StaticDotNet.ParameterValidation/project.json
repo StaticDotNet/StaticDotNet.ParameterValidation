@@ -1,16 +1,19 @@
 {
-  "version": "1.0.0-*",
+	"version": "1.0.0-*",
 	"dependencies": {
-		"NETStandard.Library": "1.6.0",
-		"System.Reflection.TypeExtensions": "4.1.0"
+
 	},
 	"frameworks": {
-		"net461": { },
+		"net461": {},
 		"netstandard1.3": {
-			"imports": "dnxcore50"
+			"imports": "dnxcore50",
+			"dependencies": {
+				"NETStandard.Library": "1.6.0",
+				"System.Reflection.TypeExtensions": "4.1.0"
+			}
 		}
 	},
-  "buildOptions": {
-    "xmlDoc": true
-  }
+	"buildOptions": {
+		"xmlDoc": true
+	}
 }
