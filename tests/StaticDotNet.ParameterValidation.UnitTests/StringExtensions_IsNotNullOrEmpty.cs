@@ -6,28 +6,28 @@ using Xunit;
 
 namespace StaticDotNet.ParameterValidation.UnitTests
 {
-    public class IEnumerableExtensions_IsNotNullOrEmpty
+    public class StringExtensions_IsNotNullOrEmpty
     {
 		[Fact]
-		public void IEnumerableExtensions_IsNotNullOrEmpty_WithValueReturnsCorrectly()
+		public void StringExtensions_IsNotNullOrEmpty_WithValueReturnsCorrectly()
 		{
 			string name = "Name";
-			int[] value = new int[] { 1 };
+			string value = "Value";
 
-			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
 
-			ParameterValidator<int[]> result = validator.IsNotNullOrEmpty();
+			ParameterValidator<string> result = validator.IsNotNullOrEmpty();
 
 			Assert.Same( validator, result );
 		}
 
 		[Fact]
-		public void IEnumerableExtensions_IsNotNullOrEmpty_WithNullValueThrowsArgumentNullException()
+		public void StringExtensions_IsNotNullOrEmpty_WithNullValueThrowsArgumentNullException()
 		{
 			string name = "Name";
-			int[] value = null;
+			string value = null;
 
-			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
 
 			ArgumentNullException exception = Assert.Throws<ArgumentNullException>( name, () => validator.IsNotNullOrEmpty() );
 
@@ -35,12 +35,12 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IEnumerableExtensions_IsNotNullOrEmpty_WithEmptyValueThrowsArgumentException()
+		public void StringExtensions_IsNotNullOrEmpty_WithEmptyValueThrowsArgumentException()
 		{
 			string name = "Name";
-			int[] value = Array.Empty<int>();
+			string value = string.Empty;
 
-			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
 
 			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotNullOrEmpty() );
 
@@ -48,14 +48,14 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		}
 
 		[Fact]
-		public void IEnumerableExtensions_IsNotNullOrEmpty_WithInvalidValueAndExceptionMessageThrowsArgumentException()
+		public void StringExtensions_IsNotNullOrEmpty_WithInvalidValueAndExceptionMessageThrowsArgumentException()
 		{
 			string exceptionMessage = "ExceptionMessage";
 
 			string name = "Name";
-			int[] value = Array.Empty<int>();
+			string value = string.Empty;
 
-			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
+			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
 
 			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotNullOrEmpty( exceptionMessage ) );
 

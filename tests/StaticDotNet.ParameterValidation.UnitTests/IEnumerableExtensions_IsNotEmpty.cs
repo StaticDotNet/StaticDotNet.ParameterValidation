@@ -12,11 +12,11 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		public void IEnumerableExtensions_IsNotEmpty_WithValueReturnsCorrectly()
 		{
 			string name = "Name";
-			string value = "Value";
+			int[] value = new int[] { 1 };
 
-			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
-			ParameterValidator<string> result = validator.IsNotEmpty();
+			ParameterValidator<int[]> result = validator.IsNotEmpty();
 
 			Assert.Same( validator, result );
 		}
@@ -25,11 +25,11 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		public void IEnumerableExtensions_IsNotEmpty_WithNullValueReturnsCorrectly()
 		{
 			string name = "Name";
-			string value = null;
+			int[] value = null;
 
-			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
-			ParameterValidator<string> result = validator.IsNotEmpty();
+			ParameterValidator<int[]> result = validator.IsNotEmpty();
 
 			Assert.Same( validator, result );
 		}
@@ -38,9 +38,9 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		public void IEnumerableExtensions_IsNotEmpty_WithEmptyValueThrowsArgumentException()
 		{
 			string name = "Name";
-			string value = string.Empty;
+			int[] value = Array.Empty<int>();
 
-			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
 			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotEmpty() );
 
@@ -53,9 +53,9 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 			string exceptionMessage = "ExceptionMessage";
 
 			string name = "Name";
-			string value = string.Empty;
+			int[] value = Array.Empty<int>();
 
-			ParameterValidator<string> validator = new ParameterValidator<string>( name, value );
+			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
 			ArgumentException exception = Assert.Throws<ArgumentException>( name, () => validator.IsNotEmpty( exceptionMessage ) );
 
