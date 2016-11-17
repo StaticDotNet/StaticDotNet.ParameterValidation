@@ -14,7 +14,7 @@ namespace StaticDotNet.ParameterValidation.Extensions
 		/// <summary>
 		/// Checks if an <see cref="IEnumerable" /> is empty.
 		/// </summary>
-		/// <param name="enumerable">The <see cref="IEnumeable" />.</param>
+		/// <param name="enumerable">The <see cref="IEnumerable" />.</param>
 		/// <returns>Whether or not the <see cref="IEnumerable"/> is empty.</returns>
 		public static bool IsEmpty( this IEnumerable enumerable )
 		{

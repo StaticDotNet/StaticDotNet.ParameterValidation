@@ -1,12 +1,12 @@
 ﻿{
-	"version": "1.0.0-*",
+	"version": "1.0.0",
 
 	"testRunner": "xunit",
 
 	"dependencies": {
 		"dotnet-test-xunit": "2.2.0-preview2-build1029",
 		"NETStandard.Library": "1.6.0",
-		"StaticDotNet.ParameterValidation": "1.0.0-*",
+		"StaticDotNet.ParameterValidation": "1.0.0",
 		"xunit": "2.2.0-beta3-build3402"
 	},
 
