@@ -12,6 +12,9 @@ namespace StaticDotNet.ParameterValidation
 	/// </summary>
 	public static class StringExtensions
 	{
+
+#if !NETSTANDARD1_0 && !NETSTANDARD1_1 && !NETSTANDARD1_2
+
 		/// <summary>
 		/// Validates that the parameter is equal to <paramref name="value" />. Otherwise, an <see cref="ArgumentException" /> is thrown.
 		/// </summary>
@@ -89,6 +92,8 @@ namespace StaticDotNet.ParameterValidation
 
 			return validator;
 		}
+
+#endif
 
 		/// <summary>
 		/// Validates that the parameter is not empty. Otherwise, an <see cref="System.ArgumentException" /> is thrown.
