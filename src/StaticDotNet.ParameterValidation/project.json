@@ -14,9 +14,8 @@
 		]
 	},
 
-	"dependencies": {
+	"dependencies": {},
 
-	},
 	"frameworks": {
 		"net461": {},
 		"netstandard1.0": {
