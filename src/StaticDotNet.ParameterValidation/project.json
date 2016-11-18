@@ -1,5 +1,19 @@
 {
 	"version": "1.0.0",
+	"authors": [ "John T. White" ],
+
+	"packOptions": {
+		"owners": [ "John T. White" ],
+		"summary": "StaticDotNet.ParameterValidation is a fluent library to help validate parameters.",
+		"projectUrl": "https://github.com/john-t-white/StaticDotNet.ParameterValidation",
+		"repository": { "url": "https://github.com/john-t-white/StaticDotNet.ParameterValidation" },
+		"tags": [
+			"Parameter",
+			"Argument",
+			"Validation"
+		]
+	},
+
 	"dependencies": {
 
 	},
