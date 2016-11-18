@@ -8,6 +8,7 @@
 		"projectUrl": "https://github.com/john-t-white/StaticDotNet.ParameterValidation",
 		"repository": { "url": "https://github.com/john-t-white/StaticDotNet.ParameterValidation" },
 		"tags": [
+			"AspNetCore",
 			"Parameter",
 			"Argument",
 			"Validation"
