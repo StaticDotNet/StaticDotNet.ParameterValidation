@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEE96343-9BE6-4367-998D-899E1881808E}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "StaticDotNet.ParameterValidation", "src\StaticDotNet.ParameterValidation\StaticDotNet.ParameterValidation.xproj", "{8171F89F-A7EE-4914-85D6-D315EDA7203B}"
