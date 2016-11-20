@@ -72,10 +72,11 @@ The library has some validation methods which have output parameters.  The reaso
 
 
 ## Extensibility
-Extending the library to add your own validation is simple and easy.  All you need to create an extension method on `StaticDotNet.ParameterValidation.ParameterValidator<TParameter>`. The validator has `Name` and `Value` proprties to give you access to the parameter information.  Unless the type you want to validate against is a concrete type that will no have anything inherit from it, you should use a type constraint instead of passing that type into `TParameter`. You also want to make sure it returns `StaticDotNet.ParameterValidation.ParameterValidator<TParameter>` to allow chaining.
+Extending the library to add your own validation is simple and easy.  All you need to create an extension method on `StaticDotNet.ParameterValidation.ParameterValidator<TParameter>`. The validator has `Name` and `Value` proprties to give you access to the parameter information.  Unless the type you want to validate against is a concrete type that will not have anything inherit from it, you should use a type constraint instead of passing that type into `TParameter`. You also want to make sure it returns `StaticDotNet.ParameterValidation.ParameterValidator<TParameter>` to allow chaining.
 
 ```csharp
 public static ParameterValidator<TParameter> IsCorrect( this ParameterValidator<TParameter> validator )
+	where TParameter : MyClass
 {
 	///Validate the parameter here. The value will be inside validator.Value.
 
