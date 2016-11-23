@@ -4,7 +4,7 @@ StaticDotNet.ParameterValidation is a fluent library to help validate parameters
 
 ## Supported Platforms
 * .NET Core (.NET Standard 1.0 and higher)
-* 4.6.1 .NET Framework
+* 4.5.1 .NET Framework
 
 Please let me know other platforms you would like support for.
 
