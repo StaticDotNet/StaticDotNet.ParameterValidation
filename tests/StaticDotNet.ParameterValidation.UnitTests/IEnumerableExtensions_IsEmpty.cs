@@ -12,7 +12,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		public void IEnumerableExtensions_IsEmpty_WithEmptyValueReturnsCorrectly()
 		{
 			string name = "Name";
-			int[] value = Array.Empty<int>(); ;
+			int[] value = new int[] { };
 
 			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 

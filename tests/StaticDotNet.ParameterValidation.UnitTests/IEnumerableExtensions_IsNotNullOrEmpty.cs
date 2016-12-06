@@ -38,7 +38,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 		public void IEnumerableExtensions_IsNotNullOrEmpty_WithEmptyValueThrowsArgumentException()
 		{
 			string name = "Name";
-			int[] value = Array.Empty<int>();
+			int[] value = new int[] { };
 
 			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
@@ -53,7 +53,7 @@ namespace StaticDotNet.ParameterValidation.UnitTests
 			string exceptionMessage = "ExceptionMessage";
 
 			string name = "Name";
-			int[] value = Array.Empty<int>();
+			int[] value = new int[] { };
 
 			ParameterValidator<int[]> validator = new ParameterValidator<int[]>( name, value );
 
